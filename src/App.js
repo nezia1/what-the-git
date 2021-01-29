@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import gitCommands from "./git-commands";
 const parseArgs = require("minimist");
@@ -14,23 +15,38 @@ function getGitCommand(inputCommand) {
   if (!matchingCommand) {
     return null;
   }
-  matchingCommand.description = matchingCommand.description.replace(
-    "%s",
-    parsedArgs._.slice(2).join(", ")
-  );
-  return matchingCommand;
+  const updatedMatchingCommand = {
+    ...matchingCommand,
+    description: matchingCommand.description.replace(
+      "%s",
+      parsedArgs._.slice(2).join(", ")
+    ),
+  };
+  return updatedMatchingCommand;
 }
 
 function App() {
+  const [matchingCommand, setMatchingCommand] = useState();
+  const [inputCommand, setInputCommand] = useState();
   return (
     <div className="App">
       <header className="App-header">
         <h1>What the git</h1>
         <h2>Enter a git command and have it explained to you</h2>
-        <input type="text" className="input-command" />
+        <input
+          type="text"
+          className="input-command"
+          onChange={(e) => setInputCommand(e.target.value)}
+        />
       </header>
       <div className="get-command-section">
-        <button className="get-command-button">Git it</button>
+        <button
+          className="get-command-button"
+          onClick={() => setMatchingCommand(getGitCommand(inputCommand))}
+        >
+          Git it
+        </button>
+        {matchingCommand && <p>{matchingCommand.description}</p>}
       </div>
     </div>
   );
