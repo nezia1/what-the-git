@@ -33,26 +33,21 @@ function getGitCommand(inputCommand) {
   });
 
   // Generate a list of flags with their corresponding descriptions
-  const flagsDescriptions = Object.entries(parsedArgs).reduce(
-    (acc, argument) => {
-      return [
-        ...acc,
-        // Filters out the boolean flags based on :
-        // If the flag exists
-        // If it's not _ (minimist prefix to store everything that's not a flag)
-        // If the flag is either stored as its full name or the alias
-        // TODO: add a check for duplicate
-        ...availableBooleanFlags.filter(
-          (flag) =>
-            argument[1] === true &&
-            argument[0] !== "_" &&
-            (flag.aliases.includes(argument[0]) || flag.name === argument[0])
-        ),
-      ];
-    },
-    []
-  );
-  console.log(flagsDescriptions);
+  const flagsDescriptions = Object.entries(parsedArgs).flatMap((argument) => {
+    const argumentKey = argument[0];
+    const argumentValue = argument[1];
+    // Filters out the boolean flags based on :
+    // If the flag exists
+    // If it's not _ (minimist prefix to store everything that's not a flag)
+    // If the flag is either stored as its full name or the alias
+    // TODO: add a check for duplicate
+    return availableBooleanFlags.filter(
+      (flag) =>
+        argumentValue === true &&
+        argumentKey !== "_" &&
+        (flag.aliases.includes(argument[0]) || flag.name === argumentKey)
+    );
+  });
 
   // Generate a description based on the command and add a list of flags descriptions if needed
   const updatedMatchingCommand = {
@@ -61,6 +56,7 @@ function getGitCommand(inputCommand) {
       "%s",
       parsedArgs._.slice(2).join(", ")
     ),
+    flagsDescriptions,
   };
   return updatedMatchingCommand;
 }
