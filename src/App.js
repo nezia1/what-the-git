@@ -78,7 +78,7 @@ function renderCommandDescription(command) {
     <div>
       <h3>git {command.name}</h3>
       <p>{command.description}</p>
-      {Object.keys(flagsDescriptions).length > 0 && <h3>Flags</h3>}
+      {Object.keys(flagsDescriptions).length > 0 && <h2>Flags</h2>}
       {Object.keys(flagsDescriptions).length > 0 && flagsDescriptions}
     </div>
   );
