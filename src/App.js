@@ -61,6 +61,29 @@ function getGitCommand(inputCommand) {
   return updatedMatchingCommand;
 }
 
+function renderCommandDescription(command) {
+  let flagsDescriptions;
+  if (command.flagsDescriptions) {
+    flagsDescriptions = command.flagsDescriptions.map((flag) => {
+      return (
+        <div>
+          <h3>{flag.name}</h3>
+          <h4>{flag.description}</h4>
+        </div>
+      );
+    });
+  }
+
+  return (
+    <div>
+      <h3>git {command.name}</h3>
+      <p>{command.description}</p>
+      {Object.keys(flagsDescriptions).length > 0 && <h3>Flags</h3>}
+      {Object.keys(flagsDescriptions).length > 0 && flagsDescriptions}
+    </div>
+  );
+}
+
 function App() {
   const [matchingCommand, setMatchingCommand] = useState();
   const [inputCommand, setInputCommand] = useState();
@@ -82,7 +105,7 @@ function App() {
         >
           Git it
         </button>
-        {matchingCommand && <p>{matchingCommand.description}</p>}
+        {matchingCommand && renderCommandDescription(matchingCommand)}
       </div>
     </div>
   );
