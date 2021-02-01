@@ -67,8 +67,8 @@ function renderCommandDescription(command) {
     flagsDescriptions = command.flagsDescriptions.map((flag) => {
       return (
         <div>
-          <h3>{flag.name}</h3>
-          <h4>{flag.description}</h4>
+          <h3>--{flag.name} ({flag.aliases.map(alias => `-${alias}`).join(" / ")})</h3>
+          <p>{flag.description}</p>
         </div>
       );
     });
@@ -86,7 +86,7 @@ function renderCommandDescription(command) {
 
 function App() {
   const [matchingCommand, setMatchingCommand] = useState();
-  const [inputCommand, setInputCommand] = useState();
+  const [inputCommand, setInputCommand] = useState("");
   return (
     <div className="App">
       <header className="App-header">
