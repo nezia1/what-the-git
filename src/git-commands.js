@@ -26,6 +26,19 @@ const gitCommands = {
         },
       ],
     },
+    {
+      name: "commit",
+      description:
+        "Saves changes added to the staging area to the local git repository.",
+      flags: [
+        {
+          name: "all",
+          aliases: ["a"],
+          description:
+            "Automatically adds every file that has been changed or deleted to the commit, but not the files that you just created.",
+        },
+      ],
+    },
   ],
 };
 
