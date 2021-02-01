@@ -17,9 +17,9 @@ function getGitCommand(inputCommand) {
     return null;
   }
   // Get all the available boolean flags
-  const availableBooleanFlags = gitCommands.flags.filter((flag) =>
-    flag.commands.includes(inputCommandName)
-  );
+  const availableBooleanFlags = gitCommands.commands.find(
+    (command) => command.name === inputCommandName
+  ).flags;
 
   // This array exists so it can be used with minimist (it takes the commands and their aliases to treat them as boolean flags when parsing)
   const availableBooleanFlagsArray = availableBooleanFlags.reduce(
@@ -67,7 +67,10 @@ function renderCommandDescription(command) {
     flagsDescriptions = command.flagsDescriptions.map((flag) => {
       return (
         <div>
-          <h3>--{flag.name} ({flag.aliases.map(alias => `-${alias}`).join(" / ")})</h3>
+          <h3>
+            --{flag.name} (
+            {flag.aliases.map((alias) => `-${alias}`).join(" / ")})
+          </h3>
           <p>{flag.description}</p>
         </div>
       );
