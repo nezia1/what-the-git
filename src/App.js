@@ -51,7 +51,6 @@ function getGitCommand(inputCommand) {
   // Generate a list of flags with their corresponding descriptions
   const flagsDescriptions = Object.entries(parsedArgs).flatMap(
     ([argumentKey, argumentValue]) => {
-      console.log(argumentKey, argumentValue);
       // Filters out the boolean flags based on :
       // If the flag exists
       // If it's not _ (minimist prefix to store everything that's not a flag)
@@ -76,9 +75,39 @@ function getGitCommand(inputCommand) {
       "%s",
       parsedArgs._.slice(2).join(", ")
     ),
-    flagsDescriptions,
+    flagsDescriptions: getParsedFlagsDescriptions(
+      flagsDescriptions,
+      parsedArgs
+    ),
   };
+
   return updatedMatchingCommand;
+}
+
+// Gets the flags descriptions and parses them if needed
+// TODO: Fix arguments between double quotes not working
+function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
+  console.log(commandArguments);
+  return flagsDescriptions.map((flag) => {
+    if (flag.isString) {
+      // Gets the matching string value for the current flag
+      const stringFlagValue = Object.entries(commandArguments).find(
+        ([argumentKey, argumentValue]) => {
+          if (flag.hasOwnProperty("aliases")) {
+            return (
+              argumentKey === flag.name || flag.aliases.includes(argumentKey)
+            );
+          }
+          return argumentKey === flag.name;
+        }
+      )[1];
+      return {
+        ...flag,
+        description: flag.description.replace("%s", stringFlagValue),
+      };
+    }
+    return flag;
+  });
 }
 
 function renderCommandDescription(command) {

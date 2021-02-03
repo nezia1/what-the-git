@@ -27,7 +27,7 @@ const gitCommands = {
         {
           name: "pathspec-from-file",
           description:
-            "Adds the files to the staging area from a file instead of command-line arguments (separated by line breaks). If the value of the flag is -, then standard input is used instead.",
+            "Adds the files to the staging area from %s instead of command-line arguments (separated by line breaks). If the value of the flag is -, then standard input is used instead.",
           isString: true,
         },
       ],
@@ -42,6 +42,13 @@ const gitCommands = {
           aliases: ["a"],
           description:
             "Automatically adds every file that has been changed or deleted to the commit, but not the files that you just created.",
+          isString: false,
+        },
+        {
+          name: "message",
+          aliases: ["m"],
+          description: "Set the commit message to %s",
+          isString: true,
         },
       ],
     },
