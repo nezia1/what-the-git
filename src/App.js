@@ -16,35 +16,55 @@ function getGitCommand(inputCommand) {
   if (!matchingCommand) {
     return null;
   }
-  // Get all the available boolean flags
-  const availableBooleanFlags = gitCommands.commands.find(
+  // Get all the available flags
+  const availableFlags = gitCommands.commands.find(
     (command) => command.name === inputCommandName
   ).flags;
 
-  // This array exists so it can be used with minimist (it takes the commands and their aliases to treat them as boolean flags when parsing)
-  const availableBooleanFlagsArray = availableBooleanFlags.reduce(
-    (acc, flag) => [...acc, flag.name, ...flag.aliases],
-    []
-  );
+  // These arrays exist so they can be used with minimist
+  const availableStringFlagsArray = availableFlags
+    .filter((flag) => flag.isString)
+    .reduce(
+      (acc, flag) =>
+        flag.hasOwnProperty("aliases")
+          ? acc.concat(flag.name, flag.aliases)
+          : acc.concat(flag.name),
+      []
+    );
+
+  const availableBooleanFlagsArray = availableFlags
+    .filter((flag) => !flag.isString)
+    .reduce(
+      (acc, flag) =>
+        flag.hasOwnProperty("aliases")
+          ? acc.concat(flag.name, flag.aliases)
+          : acc.concat(flag.name),
+      []
+    );
 
   // Parse the arguments
   const parsedArgs = parseArgs(inputCommand.split(" "), {
     boolean: availableBooleanFlagsArray,
+    string: availableStringFlagsArray,
   });
 
   // Generate a list of flags with their corresponding descriptions
   const flagsDescriptions = Object.entries(parsedArgs).flatMap(
     ([argumentKey, argumentValue]) => {
+      console.log(argumentKey, argumentValue);
       // Filters out the boolean flags based on :
       // If the flag exists
       // If it's not _ (minimist prefix to store everything that's not a flag)
-      // If the flag is either stored as its full name or the alias
+      // If the flag is either stored as its full name or the alias (only checks for aliases if the property exists)
       // TODO: add a check for duplicate
-      return availableBooleanFlags.filter(
+      return availableFlags.filter(
         (flag) =>
-          argumentValue === true &&
+          argumentValue &&
           argumentKey !== "_" &&
-          (flag.aliases.includes(argumentKey) || flag.name === argumentKey)
+          ((flag.hasOwnProperty("aliases")
+            ? flag.aliases.includes(argumentKey)
+            : false) ||
+            flag.name === argumentKey)
       );
     }
   );
@@ -68,8 +88,10 @@ function renderCommandDescription(command) {
       return (
         <div>
           <h3>
-            --{flag.name} (
-            {flag.aliases.map((alias) => `-${alias}`).join(" / ")})
+            --{flag.name}
+            {flag.hasOwnProperty("aliases")
+              ? ` (${flag.aliases.map((alias) => `-${alias}`).join(" / ")})`
+              : ""}
           </h3>
           <p>{flag.description}</p>
         </div>
