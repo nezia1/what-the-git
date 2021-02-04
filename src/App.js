@@ -92,7 +92,7 @@ function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
     if (flag.isString) {
       // Gets the matching string value for the current flag
       const stringFlagValue = Object.entries(commandArguments).find(
-        ([argumentKey, argumentValue]) => {
+        ([argumentKey]) => {
           if (flag.hasOwnProperty("aliases")) {
             return (
               argumentKey === flag.name || flag.aliases.includes(argumentKey)
