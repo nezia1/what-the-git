@@ -4,6 +4,7 @@ import gitCommands from "./git-commands";
 import {
   getAvailableFlagsAsArray,
   getMatchingFlags,
+  getParsedFlagsDescriptions,
 } from "./git-command-parsing";
 const parseArgs = require("minimist");
 
@@ -50,32 +51,6 @@ function getGitCommand(inputCommand) {
   };
 
   return updatedMatchingCommand;
-}
-
-// Gets the flags descriptions and parses them if needed
-// TODO: Fix arguments between double quotes not working
-function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
-  console.log(commandArguments);
-  return flagsDescriptions.map((flag) => {
-    if (flag.isString) {
-      // Gets the matching string value for the current flag
-      const stringFlagValue = Object.entries(commandArguments).find(
-        ([argumentKey]) => {
-          if (flag.hasOwnProperty("aliases")) {
-            return (
-              argumentKey === flag.name || flag.aliases.includes(argumentKey)
-            );
-          }
-          return argumentKey === flag.name;
-        }
-      )[1];
-      return {
-        ...flag,
-        description: flag.description.replace("%s", stringFlagValue),
-      };
-    }
-    return flag;
-  });
 }
 
 function renderCommandDescription(command) {
