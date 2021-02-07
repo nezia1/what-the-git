@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 import gitCommands from "./git-commands";
+import {
+  getAvailableFlagsAsArray,
+  getMatchingFlags,
+  getParsedFlagsDescriptions,
+} from "./git-command-parsing";
 const parseArgs = require("minimist");
 
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
@@ -16,98 +21,34 @@ function getGitCommand(inputCommand) {
   if (!matchingCommand) {
     return null;
   }
+
   // Get all the available flags
   const availableFlags = gitCommands.commands.find(
     (command) => command.name === inputCommandName
   ).flags;
 
   // These arrays exist so they can be used with minimist
-  const availableStringFlagsArray = availableFlags
-    .filter((flag) => flag.isString)
-    .reduce(
-      (acc, flag) =>
-        flag.hasOwnProperty("aliases")
-          ? acc.concat(flag.name, flag.aliases)
-          : acc.concat(flag.name),
-      []
-    );
-
-  const availableBooleanFlagsArray = availableFlags
-    .filter((flag) => !flag.isString)
-    .reduce(
-      (acc, flag) =>
-        flag.hasOwnProperty("aliases")
-          ? acc.concat(flag.name, flag.aliases)
-          : acc.concat(flag.name),
-      []
-    );
+  const availableFlagsAsArrays = getAvailableFlagsAsArray(availableFlags);
 
   // Parse the arguments
   const parsedArgs = parseArgs(inputCommand.split(" "), {
-    boolean: availableBooleanFlagsArray,
-    string: availableStringFlagsArray,
+    boolean: availableFlagsAsArrays.booleanFlagsArray,
+    string: availableFlagsAsArrays.stringFlagsArray,
   });
 
-  // Generate a list of flags with their corresponding descriptions
-  const flagsDescriptions = Object.entries(parsedArgs).flatMap(
-    ([argumentKey, argumentValue]) => {
-      // Filters out the boolean flags based on :
-      // If the flag exists
-      // If it's not _ (minimist prefix to store everything that's not a flag)
-      // If the flag is either stored as its full name or the alias (only checks for aliases if the property exists)
-      // TODO: add a check for duplicate
-      return availableFlags.filter(
-        (flag) =>
-          argumentValue &&
-          argumentKey !== "_" &&
-          ((flag.hasOwnProperty("aliases")
-            ? flag.aliases.includes(argumentKey)
-            : false) ||
-            flag.name === argumentKey)
-      );
-    }
-  );
+  const matchingFlags = getMatchingFlags(availableFlags, parsedArgs);
 
-  // Generate a description based on the command and add a list of flags descriptions if needed
+  // Replace string tokens with arguments and add a list of flags descriptions if needed
   const updatedMatchingCommand = {
     ...matchingCommand,
     description: matchingCommand.description.replace(
       "%s",
       parsedArgs._.slice(2).join(", ")
     ),
-    flagsDescriptions: getParsedFlagsDescriptions(
-      flagsDescriptions,
-      parsedArgs
-    ),
+    flagsDescriptions: getParsedFlagsDescriptions(matchingFlags, parsedArgs),
   };
 
   return updatedMatchingCommand;
-}
-
-// Gets the flags descriptions and parses them if needed
-// TODO: Fix arguments between double quotes not working
-function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
-  console.log(commandArguments);
-  return flagsDescriptions.map((flag) => {
-    if (flag.isString) {
-      // Gets the matching string value for the current flag
-      const stringFlagValue = Object.entries(commandArguments).find(
-        ([argumentKey]) => {
-          if (flag.hasOwnProperty("aliases")) {
-            return (
-              argumentKey === flag.name || flag.aliases.includes(argumentKey)
-            );
-          }
-          return argumentKey === flag.name;
-        }
-      )[1];
-      return {
-        ...flag,
-        description: flag.description.replace("%s", stringFlagValue),
-      };
-    }
-    return flag;
-  });
 }
 
 function renderCommandDescription(command) {
