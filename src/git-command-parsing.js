@@ -21,4 +21,27 @@ function getAvailableFlagsAsArray(availableFlagsObject) {
   return { booleanFlagsArray, stringFlagsArray };
 }
 
-export { getAvailableFlagsAsArray };
+function getMatchingFlags(availableFlags, parsedArguments) {
+  const matchingFlags = Object.entries(parsedArguments).flatMap(
+    ([argumentKey, argumentValue]) => {
+      // Filters out the boolean flags based on :
+      // If the flag exists
+      // If it's not _ (minimist prefix to store everything that's not a flag)
+      // If the flag is either stored as its full name or the alias (only checks for aliases if the property exists)
+      // TODO: add a check for duplicate
+      return availableFlags.filter(
+        (flag) =>
+          argumentValue &&
+          argumentKey !== "_" &&
+          ((flag.hasOwnProperty("aliases")
+            ? flag.aliases.includes(argumentKey)
+            : false) ||
+            flag.name === argumentKey)
+      );
+    }
+  );
+
+  return matchingFlags;
+}
+
+export { getAvailableFlagsAsArray, getMatchingFlags };

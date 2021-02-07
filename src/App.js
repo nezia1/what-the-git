@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import gitCommands from "./git-commands";
-import { getAvailableFlagsAsArray } from "./git-command-parsing";
+import {
+  getAvailableFlagsAsArray,
+  getMatchingFlags,
+} from "./git-command-parsing";
 const parseArgs = require("minimist");
 
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
@@ -33,24 +36,8 @@ function getGitCommand(inputCommand) {
   });
 
   // Generate a list of flags with their corresponding descriptions
-  const flagsDescriptions = Object.entries(parsedArgs).flatMap(
-    ([argumentKey, argumentValue]) => {
-      // Filters out the boolean flags based on :
-      // If the flag exists
-      // If it's not _ (minimist prefix to store everything that's not a flag)
-      // If the flag is either stored as its full name or the alias (only checks for aliases if the property exists)
-      // TODO: add a check for duplicate
-      return availableFlags.filter(
-        (flag) =>
-          argumentValue &&
-          argumentKey !== "_" &&
-          ((flag.hasOwnProperty("aliases")
-            ? flag.aliases.includes(argumentKey)
-            : false) ||
-            flag.name === argumentKey)
-      );
-    }
-  );
+  const matchingFlags = getMatchingFlags(availableFlags, parsedArgs);
+  console.log(matchingFlags);
 
   // Generate a description based on the command and add a list of flags descriptions if needed
   const updatedMatchingCommand = {
@@ -59,10 +46,7 @@ function getGitCommand(inputCommand) {
       "%s",
       parsedArgs._.slice(2).join(", ")
     ),
-    flagsDescriptions: getParsedFlagsDescriptions(
-      flagsDescriptions,
-      parsedArgs
-    ),
+    flagsDescriptions: getParsedFlagsDescriptions(matchingFlags, parsedArgs),
   };
 
   return updatedMatchingCommand;
