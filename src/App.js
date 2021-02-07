@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import gitCommands from "./git-commands";
+import { getAvailableFlagsAsArray } from "./git-command-parsing";
 const parseArgs = require("minimist");
 
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
@@ -16,36 +17,19 @@ function getGitCommand(inputCommand) {
   if (!matchingCommand) {
     return null;
   }
+
   // Get all the available flags
   const availableFlags = gitCommands.commands.find(
     (command) => command.name === inputCommandName
   ).flags;
 
   // These arrays exist so they can be used with minimist
-  const availableStringFlagsArray = availableFlags
-    .filter((flag) => flag.isString)
-    .reduce(
-      (acc, flag) =>
-        flag.hasOwnProperty("aliases")
-          ? acc.concat(flag.name, flag.aliases)
-          : acc.concat(flag.name),
-      []
-    );
-
-  const availableBooleanFlagsArray = availableFlags
-    .filter((flag) => !flag.isString)
-    .reduce(
-      (acc, flag) =>
-        flag.hasOwnProperty("aliases")
-          ? acc.concat(flag.name, flag.aliases)
-          : acc.concat(flag.name),
-      []
-    );
+  const availableFlagsAsArrays = getAvailableFlagsAsArray(availableFlags);
 
   // Parse the arguments
   const parsedArgs = parseArgs(inputCommand.split(" "), {
-    boolean: availableBooleanFlagsArray,
-    string: availableStringFlagsArray,
+    boolean: availableFlagsAsArrays.booleanFlagsArray,
+    string: availableFlagsAsArrays.stringFlagsArray,
   });
 
   // Generate a list of flags with their corresponding descriptions
