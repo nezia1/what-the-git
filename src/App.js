@@ -38,7 +38,6 @@ function getGitCommand(inputCommand) {
 
   // Generate a list of flags with their corresponding descriptions
   const matchingFlags = getMatchingFlags(availableFlags, parsedArgs);
-  console.log(matchingFlags);
 
   // Generate a description based on the command and add a list of flags descriptions if needed
   const updatedMatchingCommand = {
