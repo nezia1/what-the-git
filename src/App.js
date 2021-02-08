@@ -1,3 +1,4 @@
+import parser from "yargs-parser";
 import { useState } from "react";
 import "./App.css";
 import gitCommands from "./git-commands";
@@ -6,7 +7,6 @@ import {
   getMatchingFlags,
   getParsedFlagsDescriptions,
 } from "./git-command-parsing";
-const parseArgs = require("minimist");
 
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
 //TODO: Get the list of boolean flags from the commands file, and make it command specific.
@@ -31,7 +31,7 @@ function getGitCommand(inputCommand) {
   const availableFlagsAsArrays = getAvailableFlagsAsArray(availableFlags);
 
   // Parse the arguments
-  const parsedArgs = parseArgs(inputCommand.split(" "), {
+  const parsedArgs = parser(inputCommand, {
     boolean: availableFlagsAsArrays.booleanFlagsArray,
     string: availableFlagsAsArrays.stringFlagsArray,
   });
