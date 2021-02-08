@@ -8,6 +8,8 @@ import {
   getParsedFlagsDescriptions,
 } from "./git-command-parsing";
 
+import { snakeToCamel } from "./utils";
+
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
 //TODO: Get the list of boolean flags from the commands file, and make it command specific.
 //TODO: Also add a description of the flags.
@@ -29,13 +31,19 @@ function getGitCommand(inputCommand) {
 
   // These arrays exist so they can be used with minimist
   const availableFlagsAsArrays = getAvailableFlagsAsArray(availableFlags);
-
+  const aliasesObject = availableFlags.reduce((flagsList, flag) => {
+    if (flag.aliases) {
+      flagsList[snakeToCamel(flag.name)] = flag.aliases;
+    }
+    return flagsList;
+  }, {});
+  console.log(aliasesObject);
   // Parse the arguments
   const parsedArgs = parser(inputCommand, {
     boolean: availableFlagsAsArrays.booleanFlagsArray,
     string: availableFlagsAsArrays.stringFlagsArray,
+    alias: aliasesObject,
   });
-
   const matchingFlags = getMatchingFlags(availableFlags, parsedArgs);
 
   // Replace string tokens with arguments and add a list of flags descriptions if needed

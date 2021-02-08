@@ -31,12 +31,7 @@ function getMatchingFlags(availableFlags, parsedArguments) {
       // TODO: add a check for duplicate
       return availableFlags.filter(
         (flag) =>
-          argumentValue &&
-          argumentKey !== "_" &&
-          ((flag.hasOwnProperty("aliases")
-            ? flag.aliases.includes(argumentKey)
-            : false) ||
-            flag.name === argumentKey)
+          argumentValue && argumentKey !== "_" && flag.name === argumentKey
       );
     }
   );
