@@ -47,7 +47,6 @@ function getMatchingFlags(availableFlags, parsedArguments) {
 // Parse the flags descriptions if needed
 // TODO: Fix arguments between double quotes not working
 function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
-  console.log(commandArguments);
   return flagsDescriptions.map((flag) => {
     if (flag.isString) {
       // Gets the matching string value for the current flag
