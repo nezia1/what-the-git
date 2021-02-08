@@ -1,3 +1,5 @@
+import { snakeToCamel } from "./utils";
+
 function getAvailableFlagsAsArray(availableFlagsObject) {
   const booleanFlagsArray = availableFlagsObject
     .filter((flag) => !flag.isString)
@@ -31,12 +33,7 @@ function getMatchingFlags(availableFlags, parsedArguments) {
       // TODO: add a check for duplicate
       return availableFlags.filter(
         (flag) =>
-          argumentValue &&
-          argumentKey !== "_" &&
-          ((flag.hasOwnProperty("aliases")
-            ? flag.aliases.includes(argumentKey)
-            : false) ||
-            flag.name === argumentKey)
+          argumentValue && argumentKey !== "_" && flag.name === argumentKey
       );
     }
   );
@@ -47,7 +44,6 @@ function getMatchingFlags(availableFlags, parsedArguments) {
 // Parse the flags descriptions if needed
 // TODO: Fix arguments between double quotes not working
 function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
-  console.log(commandArguments);
   return flagsDescriptions.map((flag) => {
     if (flag.isString) {
       // Gets the matching string value for the current flag
@@ -70,8 +66,17 @@ function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
   });
 }
 
+function getAliasesAsObject(availableFlags) {
+  return availableFlags.reduce((flagsList, flag) => {
+    if (flag.aliases) {
+      flagsList[snakeToCamel(flag.name)] = flag.aliases;
+    }
+    return flagsList;
+  }, {});
+}
 export {
   getAvailableFlagsAsArray,
   getMatchingFlags,
   getParsedFlagsDescriptions,
+  getAliasesAsObject,
 };
