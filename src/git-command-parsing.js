@@ -1,3 +1,5 @@
+import { snakeToCamel } from "./utils";
+
 function getAvailableFlagsAsArray(availableFlagsObject) {
   const booleanFlagsArray = availableFlagsObject
     .filter((flag) => !flag.isString)
@@ -64,8 +66,17 @@ function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
   });
 }
 
+function getAliasesAsObject(availableFlags) {
+  return availableFlags.reduce((flagsList, flag) => {
+    if (flag.aliases) {
+      flagsList[snakeToCamel(flag.name)] = flag.aliases;
+    }
+    return flagsList;
+  }, {});
+}
 export {
   getAvailableFlagsAsArray,
   getMatchingFlags,
   getParsedFlagsDescriptions,
+  getAliasesAsObject,
 };
