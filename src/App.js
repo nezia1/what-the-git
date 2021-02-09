@@ -1,7 +1,7 @@
 import parser from "yargs-parser";
 import { useState } from "react";
 import "./App.css";
-import gitCommands from "./git-commands";
+import { gitCommands, specialTokens } from "./git-commands";
 import {
   getAvailableFlagsAsArray,
   getMatchingFlags,

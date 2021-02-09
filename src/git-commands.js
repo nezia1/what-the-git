@@ -55,4 +55,9 @@ const gitCommands = {
   ],
 };
 
-export default gitCommands;
+const specialTokens = {
+  ".": "all files in the current directory",
+  "..": "all files in the previous directory",
+};
+
+export { gitCommands, specialTokens };
