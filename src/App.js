@@ -7,6 +7,7 @@ import {
   getMatchingFlags,
   getParsedFlagsDescriptions,
   getAliasesAsObject,
+  replaceSpecialTokens,
 } from "./git-command-parsing";
 
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
@@ -38,12 +39,15 @@ function getGitCommand(inputCommand) {
   });
   const matchingFlags = getMatchingFlags(availableFlags, parsedArgs);
 
+  // Check if the arguments contain special tokens and replace them by the description to be displayed in the description
+  const updatedParsedArgs = replaceSpecialTokens(parsedArgs, specialTokens);
+
   // Replace string tokens with arguments and add a list of flags descriptions if needed
   const updatedMatchingCommand = {
     ...matchingCommand,
     description: matchingCommand.description.replace(
       "%s",
-      parsedArgs._.slice(2).join(", ")
+      updatedParsedArgs.join(", ")
     ),
     flagsDescriptions: getParsedFlagsDescriptions(matchingFlags, parsedArgs),
   };
