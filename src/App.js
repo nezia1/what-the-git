@@ -9,6 +9,7 @@ import {
   getAliasesAsObject,
   replaceSpecialTokens,
 } from "./git-command-parsing";
+import { joinWithFinalAnd } from "./utils";
 
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
 
@@ -47,7 +48,7 @@ function getGitCommand(inputCommand) {
     ...matchingCommand,
     description: matchingCommand.description.replace(
       "%s",
-      updatedParsedArgs.join(", ")
+      joinWithFinalAnd(updatedParsedArgs)
     ),
     flagsDescriptions: getParsedFlagsDescriptions(matchingFlags, parsedArgs),
   };
