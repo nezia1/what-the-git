@@ -99,6 +99,7 @@ function App() {
         <input
           type="text"
           className="input-command"
+          placeholder='git commit -m "Add example command"'
           onChange={(e) => setInputCommand(e.target.value)}
           onKeyDown={(e) => {
             if (e.code === "Enter") {
