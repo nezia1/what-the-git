@@ -110,7 +110,7 @@ function App() {
           className="get-command-button"
           onClick={() => setMatchingCommand(getGitCommand(inputCommand))}
         >
-          Git it
+          git it
         </button>
         {matchingCommand && renderCommandDescription(matchingCommand)}
       </div>

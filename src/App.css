@@ -1,4 +1,14 @@
 @import "nord.css";
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Source Code Pro", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .App {
   text-align: center;
@@ -29,6 +39,7 @@
   border: 0;
   outline: 0;
   margin-bottom: 1.5rem;
+  font-family: inherit;
 }
 
 .get-command-section {
@@ -43,6 +54,7 @@
   border-radius: 2rem;
   width: 40%;
   outline: 0;
+  font-family: inherit;
 }
 
 h1,
