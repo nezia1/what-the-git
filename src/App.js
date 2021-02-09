@@ -96,6 +96,11 @@ function App() {
           type="text"
           className="input-command"
           onChange={(e) => setInputCommand(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.code === "Enter") {
+              setMatchingCommand(getGitCommand(inputCommand));
+            }
+          }}
         />
       </header>
       <div className="get-command-section">
