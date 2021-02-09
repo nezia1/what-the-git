@@ -42,7 +42,6 @@ function getMatchingFlags(availableFlags, parsedArguments) {
 }
 
 // Parse the flags descriptions if needed
-// TODO: Fix arguments between double quotes not working
 function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
   return flagsDescriptions.map((flag) => {
     if (flag.isString) {
@@ -74,9 +73,21 @@ function getAliasesAsObject(availableFlags) {
     return flagsList;
   }, {});
 }
+
+function replaceSpecialTokens(parsedArguments, specialTokens) {
+  return parsedArguments._.slice(2).map((argument) => {
+    if (Object.keys(specialTokens).includes(argument)) {
+      return Object.entries(specialTokens).find(
+        ([tokenKey, tokenValue]) => tokenKey === argument
+      )[1];
+    } else return argument;
+  });
+}
+
 export {
   getAvailableFlagsAsArray,
   getMatchingFlags,
   getParsedFlagsDescriptions,
   getAliasesAsObject,
+  replaceSpecialTokens,
 };
