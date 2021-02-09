@@ -90,8 +90,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>What the git</h1>
-        <h2>Enter a git command and have it explained to you</h2>
+        <h1>
+          &gt;what the <span class="git">git</span>
+        </h1>
+        <h2>enter a git command and have it explained to you</h2>
+      </header>
+      <div className="get-command-section">
         <input
           type="text"
           className="input-command"
@@ -102,8 +106,6 @@ function App() {
             }
           }}
         />
-      </header>
-      <div className="get-command-section">
         <button
           className="get-command-button"
           onClick={() => setMatchingCommand(getGitCommand(inputCommand))}
