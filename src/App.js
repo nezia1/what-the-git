@@ -27,7 +27,7 @@ function getGitCommand(inputCommand) {
     (command) => command.name === inputCommandName
   ).flags;
 
-  // These arrays exist so they can be used with minimist
+  // These arrays exist so they can be used with yargs-parser
   const availableFlagsAsArrays = getAvailableFlagsAsArray(availableFlags);
   const aliasesObject = getAliasesAsObject(availableFlags);
 
