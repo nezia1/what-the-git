@@ -56,6 +56,7 @@ body {
   width: 40%;
   outline: 0;
   font-family: inherit;
+  background-color: var(--nord13);
 }
 
 h1,
