@@ -52,6 +52,16 @@ const gitCommands = {
         },
       ],
     },
+    {
+      name: "push",
+      description: "Updates your remote branch with your local commits.",
+      flags: [
+        {
+          name: "all",
+          description: "Push all branches.",
+        },
+      ],
+    },
   ],
 };
 
