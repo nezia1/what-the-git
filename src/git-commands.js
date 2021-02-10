@@ -60,6 +60,22 @@ const gitCommands = {
           name: "all",
           description: "Push all branches.",
         },
+        {
+          name: "prune",
+          description:
+            "Remove remote branches that don’t have a local counterpart. For example, a branch foo will be removed if a local branch with the same name does not exist anymore.",
+        },
+        {
+          name: "dry-run",
+          aliases: ["n"],
+          description:
+            "Do everything except send the updates (effectively simulating a push).",
+        },
+        {
+          name: "porcelain",
+          description:
+            "Outputs machine-readable and parsable output (The output status line for each ref will be tab-separated and sent to stdout instead of stderr).",
+        },
       ],
     },
   ],
