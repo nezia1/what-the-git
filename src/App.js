@@ -19,7 +19,7 @@ function getGitCommand(inputCommand) {
   const matchingCommand = gitCommands.commands.find(
     (command) => command.name === inputCommandName
   );
-  if (!matchingCommand) {
+  if (!(inputCommand.split(" ")[0] === "git") || !matchingCommand) {
     return null;
   }
 
