@@ -1,6 +1,15 @@
 @import "nord.css";
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
 
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Source Code Pro", "Roboto",
@@ -11,20 +20,24 @@ body {
 }
 
 .App {
-  text-align: center;
-  min-height: 100vh;
   display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1.5vmin);
   background-color: var(--nord0);
   color: var(--nord6);
-  box-sizing: border-box;
+}
+
+.App-container {
+  margin: 0 0.7em;
 }
 
 .App-header {
-  margin-bottom: 2rem;
+  margin-bottom: 3.5rem;
 }
 
 .git {
@@ -32,28 +45,27 @@ body {
 }
 
 .input-command {
-  width: 80%;
   height: 4rem;
   padding: 0.5em;
-  font-size: 2rem;
-  border-radius: 5rem;
+  font-size: 1em;
+  border-radius: 5em;
   border: 0;
   outline: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5em;
   font-family: inherit;
+  width: inherit;
 }
 
 .get-command-section {
-  margin-top: 1.5rem;
-  width: 60%;
+  margin-top: 1em;
+  width: 100%;
 }
 .get-command-button {
-  font-size: 1.5rem;
-  width: 100%;
-  height: 4.5rem;
+  font-size: 1em;
+  height: 4em;
   border: 0;
   border-radius: 2rem;
-  width: 40%;
+  width: 60%;
   outline: 0;
   font-family: inherit;
   background-color: var(--nord13);
@@ -63,11 +75,17 @@ body {
 h1,
 h2,
 h3 {
-  margin-block-start: 0.5rem;
+  margin-block-start: 0;
   margin-block-end: 0;
 }
 
 .invalid-command-error {
   color: var(--nord11);
   font-size: 2rem;
+}
+
+.App-header h1,
+.get-command-section h2,
+.get-command-section h3 {
+  margin-block-end: 0.5em;
 }

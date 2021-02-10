@@ -102,36 +102,38 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>
-          &gt;what the <span className="git">git</span>
-        </h1>
-        <h2>enter a git command and have it explained to you</h2>
-      </header>
-      <div className="get-command-section">
-        <input
-          type="text"
-          className="input-command"
-          placeholder='git commit -m "Add example command"'
-          onChange={(e) => setInputCommand(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.code === "Enter") {
-              handleGetCommandClick(inputCommand);
-            }
-          }}
-        />
-        <button
-          className="get-command-button"
-          onClick={() => handleGetCommandClick(inputCommand)}
-        >
-          git it
-        </button>
-        {isInvalid && (
-          <h2 className="invalid-command-error">
-            error: the command is not a valid git command
-          </h2>
-        )}
-        {matchingCommand && renderCommandDescription(matchingCommand)}
+      <div className="App-container">
+        <header className="App-header">
+          <h1>
+            &gt;what the <span className="git">git</span>
+          </h1>
+          <h2>enter a git command and have it explained to you</h2>
+        </header>
+        <div className="get-command-section">
+          <input
+            type="text"
+            className="input-command"
+            placeholder='git commit -m "Add example command"'
+            onChange={(e) => setInputCommand(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.code === "Enter") {
+                handleGetCommandClick(inputCommand);
+              }
+            }}
+          />
+          <button
+            className="get-command-button"
+            onClick={() => handleGetCommandClick(inputCommand)}
+          >
+            git it
+          </button>
+          {isInvalid && (
+            <h2 className="invalid-command-error">
+              error: the command is not a valid git command
+            </h2>
+          )}
+          {matchingCommand && renderCommandDescription(matchingCommand)}
+        </div>
       </div>
     </div>
   );
