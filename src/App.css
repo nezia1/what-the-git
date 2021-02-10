@@ -57,10 +57,17 @@ body {
   outline: 0;
   font-family: inherit;
   background-color: var(--nord13);
+  margin-bottom: 1.5rem;
 }
 
 h1,
-h2 {
+h2,
+h3 {
   margin-block-start: 0.5rem;
   margin-block-end: 0;
+}
+
+.invalid-command-error {
+  color: var(--nord11);
+  font-size: 2rem;
 }

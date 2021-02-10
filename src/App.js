@@ -113,6 +113,9 @@ function App() {
         >
           git it
         </button>
+        <h2 class="invalid-command-error">
+          error: the command is not a valid git command
+        </h2>
         {matchingCommand && renderCommandDescription(matchingCommand)}
       </div>
     </div>
