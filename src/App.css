@@ -1,4 +1,14 @@
 @import "nord.css";
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Source Code Pro", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 .App {
   text-align: center;
@@ -13,23 +23,44 @@
   box-sizing: border-box;
 }
 
+.App-header {
+  margin-bottom: 2rem;
+}
+
+.git {
+  color: var(--nord13);
+}
+
 .input-command {
   width: 80%;
+  height: 4rem;
   padding: 0.5em;
-  font-size: 1.5em;
-  border-radius: 1em;
+  font-size: 2rem;
+  border-radius: 5rem;
   border: 0;
   outline: 0;
+  margin-bottom: 1.5rem;
+  font-family: inherit;
 }
 
 .get-command-section {
-  margin-top: 2rem;
-  width: 30%;
+  margin-top: 1.5rem;
+  width: 60%;
 }
 .get-command-button {
-  font-size: 0.7em;
+  font-size: 1.5rem;
   width: 100%;
-  height: 4rem;
+  height: 4.5rem;
   border: 0;
   border-radius: 2rem;
+  width: 40%;
+  outline: 0;
+  font-family: inherit;
+  background-color: var(--nord13);
+}
+
+h1,
+h2 {
+  margin-block-start: 0.5rem;
+  margin-block-end: 0;
 }
