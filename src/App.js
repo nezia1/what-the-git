@@ -93,6 +93,7 @@ function App() {
     const gitCommand = getGitCommand(inputCommand);
     if (!gitCommand) {
       setIsInvalid(true);
+      setMatchingCommand(null);
     } else {
       setIsInvalid(false);
       setMatchingCommand(gitCommand);
