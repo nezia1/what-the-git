@@ -87,11 +87,24 @@ function renderCommandDescription(command) {
 function App() {
   const [matchingCommand, setMatchingCommand] = useState();
   const [inputCommand, setInputCommand] = useState("");
+  const [isInvalid, setIsInvalid] = useState(false);
+
+  const handleGetCommandClick = (inputCommand) => {
+    const gitCommand = getGitCommand(inputCommand);
+    if (!gitCommand) {
+      setIsInvalid(true);
+      setMatchingCommand(null);
+    } else {
+      setIsInvalid(false);
+      setMatchingCommand(gitCommand);
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>
-          &gt;what the <span class="git">git</span>
+          &gt;what the <span className="git">git</span>
         </h1>
         <h2>enter a git command and have it explained to you</h2>
       </header>
@@ -103,16 +116,21 @@ function App() {
           onChange={(e) => setInputCommand(e.target.value)}
           onKeyDown={(e) => {
             if (e.code === "Enter") {
-              setMatchingCommand(getGitCommand(inputCommand));
+              handleGetCommandClick(inputCommand);
             }
           }}
         />
         <button
           className="get-command-button"
-          onClick={() => setMatchingCommand(getGitCommand(inputCommand))}
+          onClick={() => handleGetCommandClick(inputCommand)}
         >
           git it
         </button>
+        {isInvalid && (
+          <h2 className="invalid-command-error">
+            error: the command is not a valid git command
+          </h2>
+        )}
         {matchingCommand && renderCommandDescription(matchingCommand)}
       </div>
     </div>
