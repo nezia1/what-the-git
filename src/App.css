@@ -27,7 +27,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 1.5vmin);
+  font-size: calc(10px + 2vmin);
   background-color: var(--nord0);
   color: var(--nord6);
 }
@@ -40,36 +40,58 @@ body {
   margin-bottom: 3.5rem;
 }
 
+.App-header h2 {
+  font-size: 1.3em;
+}
 .git {
   color: var(--nord13);
-}
-
-.input-command {
-  height: 4rem;
-  padding: 0.5em;
-  font-size: 1em;
-  border-radius: 5em;
-  border: 0;
-  outline: 0;
-  margin-bottom: 1.5em;
-  font-family: inherit;
-  width: inherit;
 }
 
 .get-command-section {
   margin-top: 1em;
   width: 100%;
+  font-size: 0.8em;
 }
+
+.input-command {
+  height: 4rem;
+  padding: 0.5em 1.5em;
+  font-size: 0.9em;
+  border-radius: 5em;
+  border: 0;
+  outline: 0;
+  margin-bottom: 1.3em;
+  font-family: inherit;
+  width: inherit;
+}
+
 .get-command-button {
   font-size: 1em;
-  height: 4em;
+  height: 3em;
   border: 0;
-  border-radius: 2rem;
+  border-radius: 5rem;
   width: 60%;
   outline: 0;
   font-family: inherit;
   background-color: var(--nord13);
   margin-bottom: 1.5rem;
+}
+
+@media (min-width: 465px) {
+  .input-command {
+    height: 4.5em;
+  }
+}
+
+@media (min-width: 768px) {
+  .input-command {
+    width: 80%;
+    height: 4em;
+  }
+
+  .get-command-button {
+    width: 40%;
+  }
 }
 
 h1,
@@ -81,7 +103,7 @@ h3 {
 
 .invalid-command-error {
   color: var(--nord11);
-  font-size: 2rem;
+  font-size: 1.5em;
 }
 
 .App-header h1,
