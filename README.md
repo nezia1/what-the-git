@@ -10,6 +10,15 @@ It is written with Javascript using React, works only using front-end using pars
 
 What The Git only contains really basic git commands and flags so far, but the list will grow with time. I expect to support at least git add, git commit and git push as the final version. Feel free to contribute to fix issues that you found in the app or to add more git commands to it ! As this is a personal project, I would really appreciate it.
 
+## Upcoming features
+* Small articles about certain terms and git jargon, such as staging area, commit etc. as hyperlinks in the command description
+* More verbose errors (telling you where the command went wrong and why instead of just showing a generic error message)
+
+Feel free to submit an issue if you have feature requests, I'll gladly take them.
+
+## Supported commands
+So far, only git add and git commit are supported, with a small number of flags.
+
 ## Development
 
 ### Run the app on a local machine
