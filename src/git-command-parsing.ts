@@ -1,5 +1,5 @@
 import { snakeToCamel } from "./utils";
-import {AvailableFlagsArray, Flag} from "./types";
+import {AvailableFlagsArray, Flag, ParsedArguments} from "./types";
 
 function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
   const booleanFlagsArray = availableFlagsObject
@@ -32,7 +32,7 @@ function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsA
   return { booleanFlagsArray, stringFlagsArray };
 }
 
-function getMatchingFlags(availableFlags, parsedArguments) {
+function getMatchingFlags(availableFlags: Flag[], parsedArguments: ParsedArguments) {
   const matchingFlags = Object.entries(parsedArguments).flatMap(
     ([argumentKey, argumentValue]) => {
       // Filters out the boolean flags based on :
