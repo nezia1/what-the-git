@@ -1,86 +1,75 @@
-import { snakeToCamel } from "./utils";
-import {AvailableFlagsArray, Flag, ParsedArguments} from "./types";
+import { snakeToCamel } from './utils'
+import { AvailableFlagsArray, Flag, ParsedArguments } from './types'
 
 function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
-  const booleanFlagsArray = availableFlagsObject
-    .reduce((acc, flag) => {
-      if(!flag.isString) {
-        if(flag.aliases) {
-          return [...acc, flag.name, ...flag.aliases]
-        }
-
-        return [...acc, flag.name]
+  const booleanFlagsArray = availableFlagsObject.reduce((acc, flag) => {
+    if (!flag.isString) {
+      if (flag.aliases) {
+        return [...acc, flag.name, ...flag.aliases]
       }
 
-      return acc
-    }, [] as string[])
-    
+      return [...acc, flag.name]
+    }
 
-  const stringFlagsArray = availableFlagsObject
-    .reduce((acc, flag) => {
-      if(flag.isString) {
-        if(flag.aliases) {
-          return [...acc, flag.name, ...flag.aliases]
-        }
+    return acc
+  }, [] as string[])
 
-        return [...acc, flag.name]
+  const stringFlagsArray = availableFlagsObject.reduce((acc, flag) => {
+    if (flag.isString) {
+      if (flag.aliases) {
+        return [...acc, flag.name, ...flag.aliases]
       }
 
-      return acc
-    }, [] as string[])
+      return [...acc, flag.name]
+    }
 
-  return { booleanFlagsArray, stringFlagsArray };
+    return acc
+  }, [] as string[])
+
+  return { booleanFlagsArray, stringFlagsArray }
 }
 
 function getMatchingFlags(availableFlags: Flag[], parsedArguments: ParsedArguments) {
-  const matchingFlags = Object.entries(parsedArguments).flatMap(
-    ([argumentKey, argumentValue]) => {
-      // Filters out the boolean flags based on :
-      // If the flag exists
-      // If it's not _ (minimist prefix to store everything that's not a flag)
-      // If the flag is either stored as its full name or the alias (only checks for aliases if the property exists)
-      // TODO: add a check for duplicate
-      return availableFlags.filter(
-        (flag) =>
-          argumentValue && argumentKey !== "_" && flag.name === argumentKey
-      );
-    }
-  );
+  const matchingFlags = Object.entries(parsedArguments).flatMap(([argumentKey, argumentValue]) => {
+    // Filters out the boolean flags based on :
+    // If the flag exists
+    // If it's not _ (minimist prefix to store everything that's not a flag)
+    // If the flag is either stored as its full name or the alias (only checks for aliases if the property exists)
+    // TODO: add a check for duplicate
+    return availableFlags.filter(
+      (flag) => argumentValue && argumentKey !== '_' && flag.name === argumentKey
+    )
+  })
 
-  return matchingFlags;
+  return matchingFlags
 }
 
 // Parse the flags descriptions if needed
-function getParsedFlagsDescriptions(flagsDescriptions, commandArguments) {
+function getParsedFlagsDescriptions(flagsDescriptions: Flag[], commandArguments: ParsedArguments) {
   return flagsDescriptions.map((flag) => {
     if (flag.isString) {
       // Gets the matching string value for the current flag
       const stringFlagValue = Object.entries(commandArguments).find(
-        ([argumentKey]) => {
-          if (flag.hasOwnProperty("aliases")) {
-            return (
-              argumentKey === flag.name || flag.aliases.includes(argumentKey)
-            );
-          }
-          return argumentKey === flag.name;
+        ([argumentKey]) => argumentKey === flag.name || flag.aliases?.includes(argumentKey)
+      )?.[1]
+      if (stringFlagValue) {
+        return {
+          ...flag,
+          description: flag.description.replace('%s', stringFlagValue),
         }
-      )[1];
-      return {
-        ...flag,
-        description: flag.description.replace("%s", stringFlagValue),
-      };
+      }
     }
-    return flag;
-  });
+    return flag
+  })
 }
 
 function getAliasesAsObject(availableFlags) {
   return availableFlags.reduce((flagsList, flag) => {
     if (flag.aliases) {
-      flagsList[snakeToCamel(flag.name)] = flag.aliases;
+      flagsList[snakeToCamel(flag.name)] = flag.aliases
     }
-    return flagsList;
-  }, {});
+    return flagsList
+  }, {})
 }
 
 function replaceSpecialTokens(parsedArguments, specialTokens) {
@@ -88,9 +77,9 @@ function replaceSpecialTokens(parsedArguments, specialTokens) {
     if (Object.keys(specialTokens).includes(argument)) {
       return Object.entries(specialTokens).find(
         ([tokenKey, tokenValue]) => tokenKey === argument
-      )[1];
-    } else return argument;
-  });
+      )[1]
+    } else return argument
+  })
 }
 
 export {
@@ -99,4 +88,4 @@ export {
   getParsedFlagsDescriptions,
   getAliasesAsObject,
   replaceSpecialTokens,
-};
+}
