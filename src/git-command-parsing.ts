@@ -1,24 +1,33 @@
 import { snakeToCamel } from "./utils";
+import {AvailableFlagsArray, Flag} from "./types";
 
-function getAvailableFlagsAsArray(availableFlagsObject) {
+function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
   const booleanFlagsArray = availableFlagsObject
-    .filter((flag) => !flag.isString)
-    .reduce(
-      (acc, flag) =>
-        flag.hasOwnProperty("aliases")
-          ? acc.concat(flag.name, flag.aliases)
-          : acc.concat(flag.name),
-      []
-    );
+    .reduce((acc, flag) => {
+      if(!flag.isString) {
+        if(flag.aliases) {
+          return [...acc, flag.name, ...flag.aliases]
+        }
+
+        return [...acc, flag.name]
+      }
+
+      return acc
+    }, [] as string[])
+    
+
   const stringFlagsArray = availableFlagsObject
-    .filter((flag) => flag.isString)
-    .reduce(
-      (acc, flag) =>
-        flag.hasOwnProperty("aliases")
-          ? acc.concat(flag.name, flag.aliases)
-          : acc.concat(flag.name),
-      []
-    );
+    .reduce((acc, flag) => {
+      if(flag.isString) {
+        if(flag.aliases) {
+          return [...acc, flag.name, ...flag.aliases]
+        }
+
+        return [...acc, flag.name]
+      }
+
+      return acc
+    }, [] as string[])
 
   return { booleanFlagsArray, stringFlagsArray };
 }
