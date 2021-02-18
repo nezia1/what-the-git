@@ -23,7 +23,7 @@ export interface ParsedArguments {
 
 export interface InputFlag {
   name: string
-  value: boolean | string
+  value: boolean | string | string[]
 }
 
 export interface SpecialTokens {

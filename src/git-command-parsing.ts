@@ -43,13 +43,16 @@ function getMatchingFlags(availableFlags: Flag[], parsedArguments: ParsedArgumen
 }
 
 // Parse the flags descriptions if needed
+// TODO: So far if a command has two times the same string value, it just joins them with a space. Needs to be improved for specific flags such as -m writing the message on two paragraphs.
 function getParsedFlagsDescriptions(flagsDescriptions: Flag[], commandArguments: ParsedArguments) {
   return flagsDescriptions.map((flag) => {
     if (flag.isString) {
       // Gets the matching string value for the current flag
-      const stringFlagValue = commandArguments.flags.find(
-        (inputFlag) => inputFlag.name === flag.name
-      )?.value
+      let stringFlagValue = commandArguments.flags.find((inputFlag) => inputFlag.name === flag.name)
+        ?.value
+      if (Array.isArray(stringFlagValue)) {
+        stringFlagValue = stringFlagValue.join(' ')
+      }
 
       if (typeof stringFlagValue === 'string') {
         return {
