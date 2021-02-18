@@ -1,14 +1,14 @@
-function snakeToCamel(str) {
+function snakeToCamel(str: string) {
   return str.replace(/([-_][a-z])/g, (group) =>
-    group.toUpperCase().replace("-", "").replace("_", "")
-  );
+    group.toUpperCase().replace('-', '').replace('_', '')
+  )
 }
 
-function joinWithFinalAnd(arrayToJoin) {
+function joinWithFinalAnd(arrayToJoin: string[]) {
   if (arrayToJoin.length === 1) {
-    return arrayToJoin;
+    return arrayToJoin
   }
-  return arrayToJoin.slice(0, -1).join(", ") + " and " + arrayToJoin.slice(-1);
+  return arrayToJoin.slice(0, -1).join(', ') + ' and ' + arrayToJoin.slice(-1)
 }
 
-export { snakeToCamel, joinWithFinalAnd };
+export { snakeToCamel, joinWithFinalAnd }
