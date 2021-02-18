@@ -71,11 +71,13 @@ function getAliasesAsObject(availableFlags: Flag[]) {
 }
 
 function replaceSpecialTokens(parsedArguments: ParsedArguments, specialTokens: SpecialTokens) {
-  return parsedArguments._.slice(2).map((argument) => {
-    if (Object.keys(specialTokens).includes(argument)) {
-      return Object.entries(specialTokens).find(([tokenKey]) => tokenKey === argument)?.[1]
-    } else return argument
+  const updatedArguments = parsedArguments._.slice(2).map((argument) => {
+    return (
+      Object.entries(specialTokens).find(([tokenKey]) => tokenKey === argument)?.[1] ?? argument
+    )
   })
+
+  return { ...parsedArguments, _: updatedArguments }
 }
 
 export {

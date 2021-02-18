@@ -1,3 +1,9 @@
+export interface GitCommand {
+  name: string
+  description: string
+  flagsDescriptions: Flag[]
+  flags: Flag[]
+}
 export interface Flag {
   name: string
   aliases?: string[]
