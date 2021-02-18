@@ -63,7 +63,6 @@ function getGitCommand(inputCommand: string): GitCommand | null {
 
   // Check if the arguments contain special tokens and replace them by the description to be displayed in the description
   const updatedParsedArguments = replaceSpecialTokens(parsedArguments, specialTokens)
-  console.log(updatedParsedArguments)
 
   // Replace string tokens with arguments and add a list of flags descriptions if needed
   const updatedMatchingCommand = {

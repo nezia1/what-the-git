@@ -47,10 +47,11 @@ function getParsedFlagsDescriptions(flagsDescriptions: Flag[], commandArguments:
   return flagsDescriptions.map((flag) => {
     if (flag.isString) {
       // Gets the matching string value for the current flag
-      const stringFlagValue = Object.entries(commandArguments).find(
-        ([argumentKey]) => argumentKey === flag.name || flag.aliases?.includes(argumentKey)
-      )?.[1]
-      if (stringFlagValue) {
+      const stringFlagValue = commandArguments.flags.find(
+        (inputFlag) => inputFlag.name === flag.name
+      )?.value
+
+      if (typeof stringFlagValue === 'string') {
         return {
           ...flag,
           description: flag.description.replace('%s', stringFlagValue),
