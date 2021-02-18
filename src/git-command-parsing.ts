@@ -1,5 +1,5 @@
 import { snakeToCamel } from './utils'
-import { AvailableFlagsArray, Flag, ParsedArguments } from './types'
+import { AvailableFlagsArray, Flag, ParsedArguments, SpecialTokens } from './types'
 
 function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
   const booleanFlagsArray = availableFlagsObject.reduce((acc, flag) => {
@@ -63,21 +63,19 @@ function getParsedFlagsDescriptions(flagsDescriptions: Flag[], commandArguments:
   })
 }
 
-function getAliasesAsObject(availableFlags) {
+function getAliasesAsObject(availableFlags: Flag[]) {
   return availableFlags.reduce((flagsList, flag) => {
     if (flag.aliases) {
       flagsList[snakeToCamel(flag.name)] = flag.aliases
     }
     return flagsList
-  }, {})
+  }, {} as any)
 }
 
-function replaceSpecialTokens(parsedArguments, specialTokens) {
+function replaceSpecialTokens(parsedArguments: ParsedArguments, specialTokens: SpecialTokens) {
   return parsedArguments._.slice(2).map((argument) => {
     if (Object.keys(specialTokens).includes(argument)) {
-      return Object.entries(specialTokens).find(
-        ([tokenKey, tokenValue]) => tokenKey === argument
-      )[1]
+      return Object.entries(specialTokens).find(([tokenKey]) => tokenKey === argument)?.[1]
     } else return argument
   })
 }
