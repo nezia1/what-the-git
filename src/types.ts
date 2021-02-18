@@ -12,7 +12,12 @@ export interface AvailableFlagsArray {
 
 export interface ParsedArguments {
   _: string[]
-  flags: string[]
+  flags: InputFlag[]
+}
+
+export interface InputFlag {
+  name: string
+  value: boolean | string
 }
 
 export interface SpecialTokens {

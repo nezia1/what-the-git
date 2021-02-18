@@ -38,19 +38,33 @@ function getGitCommand(inputCommand) {
     string: availableFlagsAsArrays.stringFlagsArray,
     alias: aliasesObject,
   });
-  const matchingFlags = getMatchingFlags(availableFlags, parsedArgs);
+
+
+  // Restructure the arguments to be easier to work with 
+  // Instead of the flags being as keys value pairs in the object, put them in their own property called flags with a name and a value
+  const parsedArguments = Object.entries(parsedArgs).reduce((acc, [argumentKey, argumentValue]) => {
+    if(argumentKey === "_") {
+      return {...acc, "_": argumentValue}
+    }
+    if(argumentValue) {
+      acc.flags.push({name: argumentKey, value: argumentValue})
+    }
+    return acc
+  }, {flags: []})
+
+  const matchingFlags = getMatchingFlags(availableFlags, parsedArguments);
 
   // Check if the arguments contain special tokens and replace them by the description to be displayed in the description
-  const updatedParsedArgs = replaceSpecialTokens(parsedArgs, specialTokens);
+  const updatedParsedArguments = replaceSpecialTokens(parsedArguments, specialTokens);
 
   // Replace string tokens with arguments and add a list of flags descriptions if needed
   const updatedMatchingCommand = {
     ...matchingCommand,
     description: matchingCommand.description.replace(
       "%s",
-      joinWithFinalAnd(updatedParsedArgs)
+      joinWithFinalAnd(updatedParsedArguments)
     ),
-    flagsDescriptions: getParsedFlagsDescriptions(matchingFlags, parsedArgs),
+    flagsDescriptions: getParsedFlagsDescriptions(matchingFlags, parsedArguments),
   };
 
   return updatedMatchingCommand;
