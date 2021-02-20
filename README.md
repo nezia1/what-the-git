@@ -17,7 +17,7 @@ What The Git only contains really basic git commands and flags so far, but the l
 Feel free to submit an issue if you have feature requests, I'll gladly take them.
 
 ## Supported commands
-So far, only git add and git commit are supported, with a small number of flags.
+So far, only git add, git commit and git push are supported, with a small number of flags.
 
 ## Development
 
