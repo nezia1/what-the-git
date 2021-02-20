@@ -19,7 +19,11 @@ Feel free to submit an issue if you have feature requests, I'll gladly take them
 ## Supported commands
 So far, only git add, git commit and git push are supported, with a small number of flags.
 
-## Development
+## Contribute
+
+As I stated above, pull requests, bug reports and feature requests are very much appreciated. This is a big project for me, and any help would be truly appreciated! I setup a couple of templates in the issues section if you want to contribute. I don't feel like adding a code of conduct, I only expect contributers to be respectful to each other.
+
+### Development
 
 ### Run the app on a local machine
 
