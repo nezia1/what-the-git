@@ -109,7 +109,7 @@ function App() {
   const [isInvalid, setIsInvalid] = useState(false)
 
   const handleGetCommandClick = (inputCommand: string) => {
-    const gitCommand = getGitCommand(inputCommand)
+    const gitCommand = getGitCommand(inputCommand.toLowerCase())
     if (!gitCommand) {
       setIsInvalid(true)
       setMatchingCommand({} as GitCommand)
