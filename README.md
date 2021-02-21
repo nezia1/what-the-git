@@ -4,7 +4,7 @@
 
 What The Git is a web application that makes it easy to find what a git comman does by just typing it into the search bar.
 
-It is written with Javascript using React, works only using front-end using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
+It is written with Javascript using React, works only with a front-end, using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
 
 ## Features
 
