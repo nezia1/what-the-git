@@ -133,6 +133,8 @@ function App() {
             type='text'
             className='input-command'
             placeholder='git commit -m "Add example command"'
+            autoComplete='off'
+            autoCapitalize='off'
             onChange={(e) => setInputCommand(e.target.value)}
             onKeyDown={(e) => {
               if (e.code === 'Enter') {
