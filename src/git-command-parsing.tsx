@@ -8,6 +8,7 @@ import {
   SpecialTokens,
 } from './types'
 import Definition from './components/Definition'
+import { joinWithFinalAnd } from './utils'
 
 function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
   const booleanFlagsArray = availableFlagsObject.reduce((acc, flag) => {
@@ -123,7 +124,11 @@ function parseDescriptionWithGitDefinitions(
   return updatedDescription
 }
 
-function parseDescription(command: GitCommand, definitions: GitDefinition[]) {
+function parseDescription(
+  command: GitCommand,
+  definitions: GitDefinition[],
+  parsedArguments: ParsedArguments
+) {
   const descriptionWithDef = definitions.reduce<Array<string | JSX.Element>>(
     (newDescription, definition) => {
       newDescription = parseDescriptionWithGitDefinitions(command.description, definition)
@@ -131,7 +136,9 @@ function parseDescription(command: GitCommand, definitions: GitDefinition[]) {
     },
     []
   )
-  return descriptionWithDef
+  return descriptionWithDef.map((str) =>
+    typeof str === 'string' ? str.replace('%s', joinWithFinalAnd(parsedArguments._)) : str
+  )
 }
 
 export {

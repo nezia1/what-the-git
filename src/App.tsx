@@ -10,7 +10,6 @@ import {
   replaceSpecialTokens,
   parseDescription,
 } from './git-command-parsing'
-import { joinWithFinalAnd } from './utils'
 import { GitCommand, InputFlag } from './types'
 import { definitions } from './git-definitions'
 
@@ -69,7 +68,11 @@ function getGitCommand(inputCommand: string): GitCommand | null {
   // Replace string tokens with arguments and add a list of flags descriptions if needed
   const updatedMatchingCommand = {
     ...matchingCommand,
-    description: parseDescription(matchingCommand as GitCommand, definitions),
+    description: parseDescription(
+      matchingCommand as GitCommand,
+      definitions,
+      updatedParsedArguments
+    ),
     flagsDescriptions: getParsedFlagsDescriptions(matchingFlags || [], updatedParsedArguments),
   }
 
@@ -151,8 +154,6 @@ function App() {
             <h2 className='invalid-command-error'>error: the command is not a valid git command</h2>
           )}
           {Object.entries(matchingCommand).length > 0 && renderCommandDescription(matchingCommand)}
-          {Object.entries(matchingCommand).length > 0 &&
-            parseDescription(matchingCommand, definitions)}
         </div>
       </div>
     </div>
