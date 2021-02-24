@@ -1,12 +1,5 @@
 import { snakeToCamel } from './utils'
-import {
-  AvailableFlagsArray,
-  Flag,
-  GitCommand,
-  GitDefinition,
-  ParsedArguments,
-  SpecialTokens,
-} from './types'
+import { AvailableFlagsArray, Flag, GitDefinition, ParsedArguments, SpecialTokens } from './types'
 import Definition from './components/Definition'
 
 function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
