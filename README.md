@@ -29,6 +29,9 @@ As I stated above, pull requests, bug reports and feature requests are very much
 
 In the project directory, you can run:
 
+### `npm install`
+Runs npm and downloads the related packages and it's dependencies
+
 ### `npm start`
 
 Runs the app in the development mode.\
