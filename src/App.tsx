@@ -8,9 +8,11 @@ import {
   getParsedFlagsDescriptions,
   getAliasesAsObject,
   replaceSpecialTokens,
+  parseDescriptionWithGitDefinitions,
 } from './git-command-parsing'
 import { joinWithFinalAnd } from './utils'
 import { GitCommand, InputFlag } from './types'
+import { definitions } from './git-definitions'
 
 // Gets the matching git command from the git-commands.js file, and formats the description using the arguments if needed.
 function getGitCommand(inputCommand: string): GitCommand | null {

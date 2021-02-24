@@ -1,5 +1,13 @@
 import { snakeToCamel } from './utils'
-import { AvailableFlagsArray, Flag, ParsedArguments, SpecialTokens } from './types'
+import {
+  AvailableFlagsArray,
+  Flag,
+  GitCommand,
+  GitDefinition,
+  ParsedArguments,
+  SpecialTokens,
+} from './types'
+import Definition from './components/Definition'
 
 function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
   const booleanFlagsArray = availableFlagsObject.reduce((acc, flag) => {
@@ -84,10 +92,25 @@ function replaceSpecialTokens(parsedArguments: ParsedArguments, specialTokens: S
   return { ...parsedArguments, _: updatedArguments }
 }
 
+function parseDescriptionWithGitDefinitions(
+  text: string,
+  regex: RegExp,
+  definition: GitDefinition
+) {
+  const updatedDescription = text.split(regex).map((str) => {
+    if (regex.test(str)) {
+      return <Definition definition={definition} />
+    }
+    return str
+  })
+  return updatedDescription
+}
+
 export {
   getAvailableFlagsAsArray,
   getMatchingFlags,
   getParsedFlagsDescriptions,
   getAliasesAsObject,
   replaceSpecialTokens,
+  parseDescriptionWithGitDefinitions,
 }

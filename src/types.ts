@@ -33,4 +33,5 @@ export interface SpecialTokens {
 export interface GitDefinition {
   name: string
   description: string
+  regex: RegExp
 }
