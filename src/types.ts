@@ -29,3 +29,8 @@ export interface InputFlag {
 export interface SpecialTokens {
   [key: string]: string
 }
+
+export interface GitDefinition {
+  name: string
+  description: string
+}
