@@ -92,13 +92,9 @@ function replaceSpecialTokens(parsedArguments: ParsedArguments, specialTokens: S
   return { ...parsedArguments, _: updatedArguments }
 }
 
-function parseDescriptionWithGitDefinitions(
-  text: string,
-  regex: RegExp,
-  definition: GitDefinition
-) {
-  const updatedDescription = text.split(regex).map((str) => {
-    if (regex.test(str)) {
+function parseDescriptionWithGitDefinitions(text: string, definition: GitDefinition) {
+  const updatedDescription = text.split(definition.regex).map((str) => {
+    if (definition.regex.test(str)) {
       return <Definition definition={definition} />
     }
     return str
