@@ -1,0 +1,22 @@
+.definition {
+  display: inline-block;
+}
+.definition-term {
+  color: var(--nord8);
+  text-decoration: underline dotted;
+  text-underline-offset: 0.3em;
+}
+.definition-box {
+  width: 30%;
+  background-color: black;
+  position: absolute;
+  margin-top: 0.5em;
+  padding: 1em;
+  text-align: left;
+  font-size: 0.8em;
+  display: none;
+}
+
+.definition-term:hover ~ .definition-box {
+  display: block;
+}
