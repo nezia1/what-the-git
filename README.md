@@ -1,11 +1,16 @@
 # What The Git
-![GitHub Logo](public/logo.webp)
+<img style="margin: 0 auto;">
+![What The Git Logo](public/logo.webp)
+</img>
 
 A web application that makes it easy to find what a git command does by just typing it into the search bar.
-[Link to Features](#features)
-[Link to Features](#upcoming-features)
-[Link to Supported Commands](#supported-commands)
-[Link to Contribute](#contribute)
+
+<p style="text-align: center;">
+[Features](#features) - 
+[Upcoming Features](#upcoming-features) - 
+[Supported Commands](#supported-commands) - 
+[Contribute](#contribute)
+</p>
 
 
 
@@ -13,9 +18,7 @@ A web application that makes it easy to find what a git command does by just typ
 It is written with Typescript using React, works only with a front-end, using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
 
 ## Features
-
 What The Git only contains really basic git commands and flags so far, but the list will grow with time. I expect to support at least git add, git commit and git push as the final version. Feel free to contribute to fix issues that you found in the app or to add more git commands to it ! As this is a personal project, I would really appreciate it.
-
 
 
 ## Upcoming features
@@ -34,13 +37,11 @@ So far, only a few commands are supported, with a small number of flags:
 
 
 ## Contribute
-
 As I stated above, pull requests, bug reports and feature requests are very much appreciated. This is a big project for me, and any help would be truly appreciated! I setup a couple of templates in the issues section if you want to contribute. I don't feel like adding a code of conduct, I only expect contributers to be respectful to each other.
 
 ## Development
 
 ### Run the app on a local machine
-
 In the project directory, you can run:
 
 ### `npm install`
