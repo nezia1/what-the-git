@@ -5,8 +5,8 @@ function snakeToCamel(str: string) {
 }
 
 function joinWithFinalAnd(arrayToJoin: string[]) {
-  if (arrayToJoin.length === 1) {
-    return arrayToJoin[0]
+  if (arrayToJoin.length <= 1) {
+    return arrayToJoin.join()
   }
   return arrayToJoin.slice(0, -1).join(', ') + ' and ' + arrayToJoin.slice(-1)
 }
