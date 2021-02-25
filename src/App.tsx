@@ -79,7 +79,7 @@ function getGitCommand(inputCommand: string): GitCommand | null {
 
 function renderCommandDescription(command: GitCommand) {
   let flagsDescriptions
-  if (command.flagsDescriptions) {
+  if (command.flagsDescriptions.length > 0) {
     flagsDescriptions = command.flagsDescriptions.map((flag) => {
       return (
         <div>
