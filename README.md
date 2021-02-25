@@ -1,16 +1,16 @@
 # What The Git
-<img style="margin: 0 auto;">
+
 ![What The Git Logo](public/logo.webp)
-</img>
+
 
 A web application that makes it easy to find what a git command does by just typing it into the search bar.
 
-<p style="text-align: center;">
+
 [Features](#features) - 
 [Upcoming Features](#upcoming-features) - 
 [Supported Commands](#supported-commands) - 
 [Contribute](#contribute)
-</p>
+
 
 
 
