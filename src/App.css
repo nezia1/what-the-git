@@ -1,5 +1,4 @@
-@import "nord.css";
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 html {
   box-sizing: border-box;
@@ -12,9 +11,8 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Source Code Pro", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Source Code Pro', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
