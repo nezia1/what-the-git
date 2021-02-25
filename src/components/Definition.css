@@ -8,7 +8,7 @@
 }
 .definition-box {
   width: 30%;
-  background-color: black;
+  background-color: var(--nord1);
   position: absolute;
   margin-top: 0.5em;
   padding: 1em;
