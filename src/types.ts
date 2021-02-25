@@ -1,7 +1,7 @@
 export interface GitCommand {
   name: string
   description: string | (string | JSX.Element)[]
-  flagsDescriptions?: Flag[]
+  flagsDescriptions: Flag[]
   flags: Flag[]
 }
 export interface Flag {
