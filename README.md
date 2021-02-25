@@ -1,14 +1,19 @@
 # What The Git
+![GitHub Logo](public/logo.webp)
+
+A web application that makes it easy to find what a git command does by just typing it into the search bar.
+
+
+
 
 ## Introduction
-
-What The Git is a web application that makes it easy to find what a git command does by just typing it into the search bar.
-
 It is written with Typescript using React, works only with a front-end, using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
 
 ## Features
 
 What The Git only contains really basic git commands and flags so far, but the list will grow with time. I expect to support at least git add, git commit and git push as the final version. Feel free to contribute to fix issues that you found in the app or to add more git commands to it ! As this is a personal project, I would really appreciate it.
+
+
 
 ## Upcoming features
 * Small articles about certain terms and git jargon, such as staging area, commit etc. as hyperlinks in the command description
@@ -17,7 +22,13 @@ What The Git only contains really basic git commands and flags so far, but the l
 Feel free to submit an issue if you have feature requests, I'll gladly take them.
 
 ## Supported commands
-So far, only git add, git commit and git push are supported, with a small number of flags.
+So far, only a few commands are supported, with a small number of flags:
+
+* git
+  * add
+  * commit
+  * push
+
 
 ## Contribute
 
