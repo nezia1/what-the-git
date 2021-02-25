@@ -113,7 +113,7 @@ function parseDescriptionWithGitDefinitions(
       if (typeof str === 'string') {
         return str.split(definition.regex).map((str) => {
           if (definition.regex.test(str)) {
-            return <Definition definition={definition} />
+            return <Definition definition={{ ...definition, name: str }} />
           }
           return str
         })
