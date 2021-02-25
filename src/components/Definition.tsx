@@ -5,7 +5,9 @@ export default function Definition({ definition }: { definition: GitDefinition }
   return (
     <div className='definition'>
       <span className='definition-term'>{definition.name}</span>
-      <div className='definition-box'>{definition.description}</div>
+      <article className='definition-box'>
+        <section>{definition.description}</section>
+      </article>
     </div>
   )
 }

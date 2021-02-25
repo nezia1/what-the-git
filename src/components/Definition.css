@@ -5,12 +5,12 @@
   color: var(--nord8);
   text-decoration: underline dotted;
   text-underline-offset: 0.3em;
+  cursor: help;
 }
 .definition-box {
   width: 30%;
   background-color: var(--nord1);
   position: absolute;
-  margin-top: 0.5em;
   padding: 1em;
   text-align: left;
   font-size: 0.8em;
@@ -18,5 +18,9 @@
 }
 
 .definition-term:hover ~ .definition-box {
+  display: block;
+}
+
+.definition-box:hover {
   display: block;
 }
