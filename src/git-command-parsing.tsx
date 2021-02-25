@@ -108,10 +108,10 @@ function parseDescriptionWithGitDefinitions(
       return str
     })
   } else {
-    updatedDescription = text.map((str) => {
+    updatedDescription = text.flatMap((str) => {
       // This conditional checks the regex only if the array element is a string, and runs the loop on the part of the array again (probably a terrible solution, might need some refactoring later).
       if (typeof str === 'string') {
-        str.split(definition.regex).map((str) => {
+        return str.split(definition.regex).map((str) => {
           if (definition.regex.test(str)) {
             return <Definition definition={definition} />
           }
@@ -129,13 +129,22 @@ function parseDescription(
   definitions: GitDefinition[],
   parsedArguments: ParsedArguments
 ) {
-  const descriptionWithDef = definitions.reduce<Array<string | JSX.Element>>(
+  const descriptionWithDef = definitions.reduce<string | Array<string | JSX.Element>>(
     (newDescription, definition) => {
-      newDescription = parseDescriptionWithGitDefinitions(command.description, definition)
+      newDescription = parseDescriptionWithGitDefinitions(newDescription, definition)
       return newDescription
     },
-    []
+    command.description
   )
+
+  // Parse the descriptionWithDef variable accordingly whether it's a string or an array of elements.
+  if (typeof descriptionWithDef === 'string') {
+    return descriptionWithDef
+      .split(' ')
+      .map((str) =>
+        typeof str === 'string' ? str.replace('%s', joinWithFinalAnd(parsedArguments._)) : str
+      )
+  }
   return descriptionWithDef.map((str) =>
     typeof str === 'string' ? str.replace('%s', joinWithFinalAnd(parsedArguments._)) : str
   )
