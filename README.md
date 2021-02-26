@@ -1,5 +1,3 @@
-(setq markdown-css-paths
-    '("/Applications/Marked 2.app/Contents/Resources/Lopash.css"))
 
 # What The Git
 
@@ -9,16 +7,19 @@
 A web application that makes it easy to find what a git command does by just typing it into the search bar.
 
 
-[Features](#features) - 
-[Upcoming Features](#upcoming-features) - 
-[Supported Commands](#supported-commands) - 
-[Contribute](#contribute)
+
+
+**[Features]**(#features)  -  
+**[Upcoming Features]**(#upcoming-features)  -  
+**[Supported Commands]**(#supported-commands)  -  
+**[Contribute]**(#contribute)
+
 
 
 
 
 ## Introduction
-This project is written with Typescript using React, works only with a front-end, using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
+This project is written with Typescript using React. It works only with a front-end, using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
 
 ## Features
 What The Git only contains really basic git commands and flags so far, but the list will grow with time. I expect to support at least git add, git commit and git push as the final version. Feel free to contribute to fix issues that you found in the app or to add more git commands to it ! As this is a personal project, I would really appreciate it.
