@@ -9,10 +9,10 @@ A web application that makes it easy to find what a git command does by just typ
 
 
 
-**[Features]**(#features)  -  
-**[Upcoming Features]**(#upcoming-features)  -  
-**[Supported Commands]**(#supported-commands)  -  
-**[Contribute]**(#contribute)
+[Features](#features) - 
+[Upcoming Features](#upcoming-features) - 
+[Supported Commands](#supported-commands) - 
+[Contribute](#contribute)
 
 
 
