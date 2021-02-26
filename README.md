@@ -1,14 +1,14 @@
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
+  <a href="#"><img src="https://raw.githubusercontent.com/lghiggino/what-the-git/public/logo.webp " alt="What the Git" width="700"></a>
   <br>
-  Markdownify
+  What the Git
   <br>
 </h1>
 
-<h4 align="center">A minimal Markdown Editor desktop app built on top of <a href="http://electron.atom.io" target="_blank">Electron</a>.</h4>
+<h4 align="center">A web application that makes it easy to find what a git command does by just typing it into the search bar. </h4>
 
-<p align="center">
+<!-- <p align="center">
   <a href="https://badge.fury.io/js/electron-markdownify">
     <img src="https://badge.fury.io/js/electron-markdownify.svg"
          alt="Gitter">
@@ -20,35 +20,19 @@
   <a href="https://www.paypal.me/AmitMerchant">
     <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
   </a>
-</p>
+</p> -->
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
-  <a href="#license">License</a>
+  <a href="#features">Features</a> •
+  <a href="#upcoming-features">Upcoming Features</a> •
+  <a href="#supported-commands">Supported Commands</a> •
+  <a href="#contribute">Contribute</a>  
 </p>
 
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+<!-- ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif) -->
 # What The Git
 
 ![What The Git Logo](public/logo.webp)
-
-
-A web application that makes it easy to find what a git command does by just typing it into the search bar.
-
-
-
-
-[Features](#features) - 
-[Upcoming Features](#upcoming-features) - 
-[Supported Commands](#supported-commands) - 
-[Contribute](#contribute)
-
-
-
 
 
 ## Introduction
