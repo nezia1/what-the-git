@@ -1,3 +1,11 @@
+(setq markdown-xhtml-header-content
+      "<style type='text/css'>
+        a {text-decoration: none; color: #2e3440 }
+        a:hover {text-decoration: underline; }
+        h1,h2,h3,h4,h5{color: #2e3440}
+      </style>"
+)
+
 # What The Git
 
 ![What The Git Logo](public/logo.webp)
@@ -15,7 +23,7 @@ A web application that makes it easy to find what a git command does by just typ
 
 
 ## Introduction
-It is written with Typescript using React, works only with a front-end, using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
+This project is written with Typescript using React, works only with a front-end, using parsing of command-line arguments and a simple .json file containing all the descriptions of the commands and their flags. It is also easy to self-host since it doesn't contain a server.
 
 ## Features
 What The Git only contains really basic git commands and flags so far, but the list will grow with time. I expect to support at least git add, git commit and git push as the final version. Feel free to contribute to fix issues that you found in the app or to add more git commands to it ! As this is a personal project, I would really appreciate it.
