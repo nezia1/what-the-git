@@ -1,10 +1,5 @@
-(setq markdown-xhtml-header-content
-      "<style type='text/css'>
-        a {text-decoration: none; color: #2e3440 }
-        a:hover {text-decoration: underline; }
-        h1,h2,h3,h4,h5{color: #2e3440}
-      </style>"
-)
+(setq markdown-css-paths
+    '("/Applications/Marked 2.app/Contents/Resources/Lopash.css"))
 
 # What The Git
 
