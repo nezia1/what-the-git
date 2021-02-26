@@ -1,6 +1,7 @@
-<h1 align="center">
-  ![What The Git Logo](public/logo.webp)
-</h1>
+
+![What The Git Logo](public/logo.webp)
+
+
 
 <h4 align="center">A web application that makes it easy to find what a git command does by just typing it into the search bar. </h4>
 
