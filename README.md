@@ -1,9 +1,5 @@
 <h1 align="center">
-  <br>
-  <a href="#"><img src="https://raw.githubusercontent.com/lghiggino/what-the-git/public/logo.webp " alt="What the Git" width="700"></a>
-  <br>
-  What the Git
-  <br>
+  ![What The Git Logo](public/logo.webp)
 </h1>
 
 <h4 align="center">A web application that makes it easy to find what a git command does by just typing it into the search bar. </h4>
@@ -30,9 +26,9 @@
 </p>
 
 <!-- ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif) -->
-# What The Git
+<!-- # What The Git
 
-![What The Git Logo](public/logo.webp)
+![What The Git Logo](public/logo.webp) -->
 
 
 ## Introduction
