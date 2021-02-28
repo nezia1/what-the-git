@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-  <img src="https://github.com/waldyr/Sublime-Installer/blob/master/sublime_text.png?raw=true" alt="Sublime's custom image"/>
+  <img src="https://i.ibb.co/GQF1Mxm/logo.webp" alt="What The Git"/>
 </p>
 
 
