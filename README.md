@@ -1,7 +1,3 @@
-<div margin="0 auto">
-![What The Git Logo](public/logo.webp)
-</div>
-
 <p align="center">
   <img src="https://i.ibb.co/GQF1Mxm/logo.webp" alt="What The Git"/>
 </p>
@@ -40,7 +36,7 @@ So far, only a few commands are supported, with a small number of flags:
 
 
 ## Contribute
-As I stated above, pull requests, bug reports and feature requests are very much appreciated. This is a big project for me, and any help would be truly appreciated! I setup a couple of templates in the issues section if you want to contribute. I don't feel like adding a code of conduct, I only expect contributers to be respectful to each other.
+As I stated above, pull requests, bug reports and feature requests are very much appreciated. This is a big project for me, and any help would be truly appreciated! I setup a couple of templates in the issues section if you want to contribute. I don't feel like adding a code of conduct, I only expect contributors to be respectful to each other.
 
 ## Development
 
