@@ -12,7 +12,7 @@ function joinWithFinalAnd(arrayToJoin: string[]) {
 }
 
 function toSnakeCase(str: string) {
-  return str.replace(' ', '-')
+  return str.trim().replace(' ', '-')
 }
 
 export { snakeToCamel, joinWithFinalAnd, toSnakeCase }
