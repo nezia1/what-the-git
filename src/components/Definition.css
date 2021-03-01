@@ -10,17 +10,7 @@
 .definition-box {
   width: 30%;
   background-color: var(--nord1);
-  position: absolute;
   padding: 1em;
   text-align: left;
   font-size: 0.8em;
-  display: none;
-}
-
-.definition-term:hover ~ .definition-box {
-  display: block;
-}
-
-.definition-box:hover {
-  display: block;
 }
