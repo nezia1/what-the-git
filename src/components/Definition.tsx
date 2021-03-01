@@ -3,7 +3,9 @@ import { GitDefinition } from '../types'
 import './Definition.css'
 
 export default function Definition({ definition }: { definition: GitDefinition }) {
-  const { setTooltipRef, setTriggerRef, getTooltipProps, visible } = usePopperTooltip()
+  const { setTooltipRef, setTriggerRef, getTooltipProps, visible } = usePopperTooltip({
+    interactive: true,
+  })
   return (
     <div className='definition'>
       <span ref={setTriggerRef} className='definition-term'>

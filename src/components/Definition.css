@@ -1,16 +1,24 @@
 .definition {
   display: inline-block;
 }
+
 .definition-term {
   color: var(--nord8);
   text-decoration: underline dotted;
   text-underline-offset: 0.3em;
   cursor: help;
 }
+
 .definition-box {
-  width: 30%;
+  width: 80%;
   background-color: var(--nord1);
   padding: 1em;
   text-align: left;
   font-size: 0.8em;
+}
+
+@media (min-width: 768px) {
+  .definition-box {
+    width: 40%;
+  }
 }
