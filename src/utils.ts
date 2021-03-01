@@ -11,4 +11,8 @@ function joinWithFinalAnd(arrayToJoin: string[]) {
   return arrayToJoin.slice(0, -1).join(', ') + ' and ' + arrayToJoin.slice(-1)
 }
 
-export { snakeToCamel, joinWithFinalAnd }
+function toSnakeCase(str: string) {
+  return str.replace(' ', '-')
+}
+
+export { snakeToCamel, joinWithFinalAnd, toSnakeCase }
