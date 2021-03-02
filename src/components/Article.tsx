@@ -19,12 +19,9 @@ export default function Article() {
     }
     getArticle()
   }, [article])
-  if (!articleExists) {
-    return <p>This article doesn't exist</p>
-  }
   return (
     <div className='container'>
-      <Markdown>{articleText}</Markdown>
+      {articleExists ? <Markdown>{articleText}</Markdown> : <p>This article doesn't exist</p>}
     </div>
   )
 }
