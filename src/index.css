@@ -1,0 +1,14 @@
+@import 'nord.css';
+
+.App {
+  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  background-color: var(--nord0);
+  color: var(--nord6);
+}

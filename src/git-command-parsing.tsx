@@ -1,5 +1,14 @@
 import { snakeToCamel } from './utils'
-import { AvailableFlagsArray, Flag, ParsedArguments, SpecialTokens } from './types'
+import {
+  AvailableFlagsArray,
+  Flag,
+  GitCommand,
+  GitDefinition,
+  ParsedArguments,
+  SpecialTokens,
+} from './types'
+import Definition from './components/Definition'
+import { joinWithFinalAnd } from './utils'
 
 function getAvailableFlagsAsArray(availableFlagsObject: Flag[]): AvailableFlagsArray {
   const booleanFlagsArray = availableFlagsObject.reduce((acc, flag) => {
@@ -84,10 +93,69 @@ function replaceSpecialTokens(parsedArguments: ParsedArguments, specialTokens: S
   return { ...parsedArguments, _: updatedArguments }
 }
 
+// Transform a description string into an array of strings and Definition components based on the term is a git definition or not.
+function parseDescriptionWithGitDefinitions(
+  text: string | (string | JSX.Element)[],
+  definition: GitDefinition
+) {
+  let updatedDescription
+  // This conditional is here because text can be either a string or an array, and it needs to be handled accordingly.
+  if (typeof text === 'string') {
+    updatedDescription = text.split(definition.regex).map((str) => {
+      if (definition.regex.test(str)) {
+        return <Definition definition={definition} />
+      }
+      return str
+    })
+  } else {
+    updatedDescription = text.flatMap((str) => {
+      // This conditional checks the regex only if the array element is a string, and runs the loop on the part of the array again (probably a terrible solution, might need some refactoring later).
+      if (typeof str === 'string') {
+        return str.split(definition.regex).map((str) => {
+          if (definition.regex.test(str)) {
+            return <Definition definition={{ ...definition, name: str }} />
+          }
+          return str
+        })
+      }
+      return str
+    })
+  }
+  return updatedDescription
+}
+
+function parseDescription(
+  command: GitCommand,
+  definitions: GitDefinition[],
+  parsedArguments: ParsedArguments
+) {
+  const descriptionWithDef = definitions.reduce<string | Array<string | JSX.Element>>(
+    (newDescription, definition) => {
+      newDescription = parseDescriptionWithGitDefinitions(newDescription, definition)
+      return newDescription
+    },
+    command.description
+  )
+
+  // Parse the descriptionWithDef variable accordingly whether it's a string or an array of elements.
+  if (typeof descriptionWithDef === 'string') {
+    return descriptionWithDef
+      .split(' ')
+      .map((str) =>
+        typeof str === 'string' ? str.replace('%s', joinWithFinalAnd(parsedArguments._)) : str
+      )
+  }
+  return descriptionWithDef.map((str) =>
+    typeof str === 'string' ? str.replace('%s', joinWithFinalAnd(parsedArguments._)) : str
+  )
+}
+
 export {
   getAvailableFlagsAsArray,
   getMatchingFlags,
   getParsedFlagsDescriptions,
   getAliasesAsObject,
   replaceSpecialTokens,
+  parseDescriptionWithGitDefinitions,
+  parseDescription,
 }

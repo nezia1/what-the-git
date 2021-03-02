@@ -1,6 +1,6 @@
 export interface GitCommand {
   name: string
-  description: string
+  description: string | (string | JSX.Element)[]
   flagsDescriptions: Flag[]
   flags: Flag[]
 }
@@ -28,4 +28,10 @@ export interface InputFlag {
 
 export interface SpecialTokens {
   [key: string]: string
+}
+
+export interface GitDefinition {
+  name: string
+  description: string
+  regex: RegExp
 }
