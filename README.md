@@ -23,7 +23,7 @@ It also features a system that embeds descriptions of git jargon such as staging
 
 ## Upcoming features
 * More verbose errors (telling you where the command went wrong and why instead of just showing a generic error message)
-* 
+ 
 Feel free to submit an issue if you have feature requests, I'll gladly take them.
 
 ## Supported commands
@@ -38,6 +38,7 @@ So far, only a few commands are supported, with a small number of flags:
 ## Contribute
 As I stated above, pull requests, bug reports and feature requests are very much appreciated. This is a big project for me, and any help would be truly appreciated! I setup a couple of templates in the issues section if you want to contribute. I don't feel like adding a code of conduct, I only expect contributors to be respectful to each other.
 
+It is advised to read the [developer manual](DEVELOPMENT.md) before intending to contribute on the code. It's here to help you understand the structure of the project!
 ## Development
 
 ### Run the app on a local machine
