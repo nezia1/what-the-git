@@ -78,6 +78,68 @@ const gitCommands = {
         },
       ],
     },
+    {
+      name: 'rebase',
+      description: 'Reapply commits on another branch',
+      flags: [
+        {
+          name: 'verbose',
+          aliases: ['v'],
+          description: 'Be verbose (allows the command to say more about what it does). Implies --stat.',
+          isString: false,
+        },
+        {
+          name: 'quiet',
+          aliases: ['q'],
+          description: 'Be quiet (Opposite of verbose, silences the command output). Implies --no-stat.',
+          isString: false,
+        },
+        {
+          name: 'interactive',
+          aliases: ['i'],
+          description: 'Make a list of the commits which are about to be rebased. (This list can be edited before continuing to rebase)',
+          isString: false,
+        },
+        {
+          name: 'force-rebase',
+          aliases: ['f'],
+          description: 'Individually replay all rebased commits instead of fast-forwarding over the unchanged ones.',
+          isString: false,
+        },
+        {
+          name: 'continue',
+          description: 'Restart the rebasing process after having resolved a merge conflict.',
+          isString: false,
+        },
+        {
+          name: 'abort',
+          description: 'Abort the rebase operation and reset HEAD to the original branch.',
+          isString: false,
+        },
+      ]
+    },
+    {
+      name: 'diff',
+      description: 'Show changes between commits, commit and working tree, and more.',
+      isString: false,
+      flags: [
+        {
+          name: 'raw',
+          description: 'Generates the differance in a raw format.',
+          isString: false,
+        },
+        {
+          name: 'summary',
+          description: 'Summarize the extended header information output (Such as creations and renames)',
+          isString: false,
+        },
+        {
+          name: 'name-only',
+          description: 'Only shows the name of changed files.',
+          isString: false,
+        },
+      ]
+    },
   ],
 }
 
