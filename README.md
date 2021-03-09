@@ -23,16 +23,18 @@ It also features a system that embeds descriptions of git jargon such as staging
 
 ## Upcoming features
 * More verbose errors (telling you where the command went wrong and why instead of just showing a generic error message)
- 
+
 Feel free to submit an issue if you have feature requests, I'll gladly take them.
 
 ## Supported commands
-So far, only a few commands are supported, with a small number of flags:
+So far, only a few commands are supported, with a few flags:
 
 * git
   * add
   * commit
   * push
+  * rebase
+  * diff
 
 
 ## Contribute
@@ -45,7 +47,7 @@ It is advised to read the [developer manual](DEVELOPMENT.md) before intending to
 In the project directory, you can run:
 
 ### `npm install`
-Runs npm and downloads the related packages and it's dependencies for this project
+Runs npm and downloads the related packages, and it's dependencies for this project
 
 ### `npm start`
 Runs the app in the development mode.\
@@ -58,5 +60,5 @@ You will also see any lint errors in the console.
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified, and the filenames include the hashes.\
 Your app is ready to be deployed!
