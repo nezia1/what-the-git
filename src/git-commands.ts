@@ -166,6 +166,23 @@ const gitCommands = {
         },
       ]
     },
+    {
+      name: 'pull',
+      description: 'Merge changes from a remote repository into the current branch',
+      flags: [
+        {
+          name: 'commit',
+          description: 'Commits the result of the merge.',
+          isString: false,
+        },
+        {
+          name: 'edit',
+          aliases: ['e'],
+          description: 'Opens an editor to modify the auto-generated merge message before commiting to further explain the merge.',
+          isString: false,
+        },
+      ]
+    },
   ],
 }
 
