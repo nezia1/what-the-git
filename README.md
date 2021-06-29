@@ -35,7 +35,9 @@ So far, only a few commands are supported, with a few flags:
   * push
   * rebase
   * diff
-
+  * log
+  * pull
+  * status
 
 ## Contribute
 As I stated above, pull requests, bug reports and feature requests are very much appreciated. This is a big project for me, and any help would be truly appreciated! I setup a couple of templates in the issues section if you want to contribute. I don't feel like adding a code of conduct, I only expect contributors to be respectful to each other.
