@@ -183,6 +183,29 @@ const gitCommands = {
         },
       ]
     },
+    {
+      name: 'status',
+      description: 'Displays the paths that have differences between the index file and staged, tracked or untracked files',
+      flags: [
+        {
+          name: 'short',
+          aliases: ['s'],
+          description: 'Outputs the status in the short format.',
+          isString: false,
+        },
+        {
+          name: 'long',
+          description: 'Outputs the status in the long format (Default).',
+          isString: false,
+        },
+        {
+          name: 'verbose',
+          aliases: ['v'],
+          description: 'Shows the textual changes that are staged to be commited as well as the name of the files (The same way as git diff --cached).',
+          isString: false,
+        },
+      ]
+    },
   ],
 }
 
