@@ -151,6 +151,72 @@ const gitCommands = {
         },
       ]
     },
+    {
+      name: 'log',
+      description: 'Lists commits and its information in reverse chronological order',
+      flags: [
+        {
+          name: 'source',
+          description: 'Print out the ref information of each commit (Such as tags/branches).',
+          isString: false,
+        },
+        {
+          name: 'log-size',
+          description: 'Include the lenght of each commit message in bytes.',
+          isString: false,
+        },
+        {
+          name: 'abbrev-commit',
+          description: 'Shows a unique object prefix that substitutes the full 40-byte hexadecimal commit object name',
+          isString: false,
+        },
+        {
+          name: 'oneline',
+          description: 'Displays the information of each commit in only one line and abbreviates the object\'s name (The same way as --abbrev-commit).',
+          isString: false,
+        },
+      ]
+    },
+    {
+      name: 'pull',
+      description: 'Merge changes from a remote repository into the current branch',
+      flags: [
+        {
+          name: 'commit',
+          description: 'Commits the result of the merge.',
+          isString: false,
+        },
+        {
+          name: 'edit',
+          aliases: ['e'],
+          description: 'Opens an editor to modify the auto-generated merge message before commiting to further explain the merge.',
+          isString: false,
+        },
+      ]
+    },
+    {
+      name: 'status',
+      description: 'Displays the paths that have differences between the index file and staged, tracked or untracked files',
+      flags: [
+        {
+          name: 'short',
+          aliases: ['s'],
+          description: 'Outputs the status in the short format.',
+          isString: false,
+        },
+        {
+          name: 'long',
+          description: 'Outputs the status in the long format (Default).',
+          isString: false,
+        },
+        {
+          name: 'verbose',
+          aliases: ['v'],
+          description: 'Shows the textual changes that are staged to be commited as well as the name of the files (The same way as git diff --cached).',
+          isString: false,
+        },
+      ]
+    },
   ],
 }
 
