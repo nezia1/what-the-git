@@ -140,6 +140,32 @@ const gitCommands = {
         },
       ]
     },
+    {
+      name: 'log',
+      description: 'Lists commits and its information in reverse chronological order',
+      flags: [
+        {
+          name: 'source',
+          description: 'Print out the ref information of each commit (Such as tags/branches).',
+          isString: false,
+        },
+        {
+          name: 'log-size',
+          description: 'Include the lenght of each commit message in bytes.',
+          isString: false,
+        },
+        {
+          name: 'abbrev-commit',
+          description: 'Shows a unique object prefix that substitutes the full 40-byte hexadecimal commit object name',
+          isString: false,
+        },
+        {
+          name: 'oneline',
+          description: 'Displays the information of each commit in only one line and abbreviates the object\'s name (The same way as --abbrev-commit).',
+          isString: false,
+        },
+      ]
+    },
   ],
 }
 
