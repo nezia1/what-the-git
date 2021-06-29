@@ -28,6 +28,12 @@ const gitCommands = {
             'Adds the files to the staging area from %s instead of command-line arguments (separated by line breaks). If the value of the flag is -, then standard input is used instead.',
           isString: true,
         },
+        {
+          name: 'patch',
+          aliases: ['p'],
+          description: 'Allows the user to add some part of the edited code interactively.',
+          isString: false,
+        },
       ],
     },
     {
@@ -77,6 +83,11 @@ const gitCommands = {
           isString: false,
         },
       ],
+    },
+    {
+      name: 'fetch',
+      description: 'Fetch all the new commits from a remote branch locally.',
+      flags: []
     },
     {
       name: 'rebase',
