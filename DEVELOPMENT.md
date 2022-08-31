@@ -1,4 +1,4 @@
-# Developer manual
+# Developer Manual
 
 This readme intends to help you understand the project better by explaining its structure.
 
