@@ -1,7 +1,4 @@
 {
-  "projects": {
-    "default": "portfolio-8991e"
-  },
   "targets": {
     "portfolio-8991e": {
       "hosting": {
@@ -10,6 +7,5 @@
         ]
       }
     }
-  },
-  "etags": {}
+  }
 }
