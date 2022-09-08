@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "public",
+    "target": "what-the-git",
+    "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
