@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "lts/gallium"
-      - run: yarn build
+      - run: yarn && yarn build
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting

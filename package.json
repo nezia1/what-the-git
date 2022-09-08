@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cross-env CI=false react-scripts build"
+    "build": "cross-env react-scripts build"
   },
   "eslintConfig": {
     "extends": [
