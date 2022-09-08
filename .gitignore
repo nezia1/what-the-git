@@ -24,3 +24,6 @@ yarn-error.log*
 
 .eslintcache
 
+# firebase related
+/.firebase/
+.vscode
