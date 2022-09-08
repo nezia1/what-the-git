@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "portfolio-8991e"
+  },
+  "targets": {
+    "portfolio-8991e": {
+      "hosting": {
+        "what-the-git": [
+          "what-the-git"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
