@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: "lts"
       - run: yarn build
-      - uses: w9jds/firebase-action@v2
+      - uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
